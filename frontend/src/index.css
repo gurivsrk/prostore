@@ -4,3 +4,7 @@ main{
 .ml-auto{
   margin-left: auto !important;
 }
+.btn-block {
+  display: block;
+  width: 100%;
+}
