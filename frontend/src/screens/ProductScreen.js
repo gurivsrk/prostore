@@ -1,17 +1,26 @@
-import React from 'react'
+import React, {useEffect, useState } from 'react'
  // eslint-disable-next-line
 import { Link, useParams } from 'react-router-dom'
  // eslint-disable-next-line
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem} from 'react-bootstrap'
  // eslint-disable-next-line
 import Rating from '../component/Rating'
-import products from '../products'
+
+import axios from 'axios'
 
 const ProductScreen = () => {
-    const { id } = useParams();
-    const product = products.find(product => product._id === id) 
 
-   
+    const [product,setProduct] = useState([])
+    const { id } = useParams();
+
+    useEffect(()=> {
+       const fetchProduct =  async () => {
+            const { data } = await axios.get(`/api/product/${id}`)
+            setProduct(data)
+       }
+
+       fetchProduct()
+    },[])
 
     return (
         <>
